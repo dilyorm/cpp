@@ -1,228 +1,289 @@
 #include <iostream>
-#include <iomanip>
-#include <math.h>
+#include <cmath>
 using namespace std;
-int p1() {
-    int a;
-    cin>>a;
-    if (a>=0) {
-        cout<<"Positive number"<<endl;
-    }
-    else {
-        cout<<"Negative number"<<endl;
+
+int p1_1() {
+    for (int i = 1; i <= 10; ++i) {
+        cout << i<<" ";
     }
 }
-int p2(){
-    int a;
-    cin>>a;
-    if (a%2==0) {
-        cout<<"Even number"<<endl;
-    }
-    else {
-        cout<<"Odd number"<<endl;
+
+int p1_2() {
+    int N;
+    cin >> N;
+    for (int i = 1; i <= N; ++i) {
+        cout << i<<" ";
     }
 }
+
+int p1_3() {
+    int sum = 0;
+    for (int i = 1; i <= 10; ++i) {
+        sum += i;
+    }
+    cout << sum;
+}
+
+int p1_4() {
+    int N, sum = 0;
+    cin >> N;
+    for (int i = 1; i <= N; ++i) {
+        sum += i;
+    }
+    cout << sum;
+}
+
+int p1_5() {
+    int sum = 0;
+    for (int i = 1; i <= 10; ++i) {
+        sum += i;
+    }
+    cout << sum / 10.0;
+}
+
+int p1_6() {
+    int N, sum = 0;
+    cin >> N;
+    for (int i = 1; i <= N; ++i) {
+        sum += i;
+    }
+    cout << sum / float(N);
+}
+
+int p2_1() {
+    for (int i = 1; i <= 10; i += 2) {
+        cout << i << " ";
+    }
+}
+
+int p2_2() {
+    for (int i = 2; i <= 10; i += 2) {
+        cout << i << " ";
+    }
+}
+
+int p2_3() {
+    int N;
+    cin >> N;
+    for (int i = 1; i <= N; i += 2) {
+        cout << i << " ";
+    }
+}
+
+int p2_4() {
+    int N;
+    cin >> N;
+    for (int i = 2; i <= N; i += 2) {
+        cout << i << " ";
+    }
+}
+
+int p2_5() {
+    for (int i = 10; i <= 100; i += 10) {
+        cout << i << " ";
+    }
+}
+
+int p2_6() {
+    int N;
+    cin >> N;
+    for (int i = 10; i <= N; i += 10) {
+        cout << i << " ";
+    }
+}
+
 int p3() {
-    int a,b;
-    cin>>a>>b;
-    if (a>b) {
-        cout<<"Largest number: "<<a<<endl;
-    }
-    else if (a==b) {
-        cout<<"Largest number: "<<a<<endl;
-        cout<<"Two numbers are equal";
-    }
-    else {
-        cout<<"Largest number: "<<b<<endl;
-    }
-}
-int p4() {
-    int a,b,c;
-    cin>>a>>b>>c;
-    if (a>=b & a>=c) {
-        cout<<"Largest number: "<<a<<endl;
-    }
-    else if (b>=a & b>=c) {
-        cout<<"Largest number: "<<b<<endl;
-    }
-    else if (c>=a & c>=b) {
-        cout<<"Largest number: "<<c<<endl;
-    }
-}
-int p5() {
-    int a;
-    cin>>a;
-    if (a%4==0) {
-        if (a%100==0) {
-            if (a%400==0) {
-                cout<<"Leap year"<<endl;
-            }
-            else {
-                cout<<"Not a leap year"<<endl;
-            }
+    for (char c = 'A'; c <= 'Z'; ++c) {
+        cout << c << " ";
+        if ((c - 'A' + 1) % 5 == 0) {
+            cout << endl;
         }
-        else{cout<<"Leap year"<<endl;}
-    }
-    else {
-        cout<<"Not a leap year"<<endl;
     }
 }
-int p6() {
-    int a;
-    cin>>a;
-    if (a<20) {
-        cout<<"too slow"<<endl;
-    }
-    else if (a>80) {
-        cout<<"too fast"<<endl;
-    }
-    else {
-        cout<<"just right"<<endl;
-    }
-}
-int p7() {
-    int a;
-    cin>>a;
-    if (a>=50) {
-        cout<<"Pass"<<endl;
-    }
-    else {
-        cout<<"Fail"<<endl;
+
+int p4() {
+    int n, fact = 1;
+    cout << "Enter a number: ";
+    cin >> n;
+    if (n < 0) {
+        cout << "Factorial of a negative number is not defined.";
+    } else {
+        for (int i = 1; i <= n; ++i) {
+            fact *= i;
+        }
+        cout << "Factorial of " << n << " is " << fact;
     }
 }
-int p8() {
-    int a;
-    cin>>a;
-    if (a>0) {
-        cout<<"Positive number"<<endl;
-    }
-    else if (a<0) {
-        cout<<"Negative number"<<endl;
-    }
-    else {
-        cout<<"Zero"<<endl;
-    }
-}
-int p9() {
-    string a;
-    cin>>a;
-    if (a=="g") {
-        cout<<"Go!"<<endl;
-    }
-    else if (a=="y") {
-        cout<<"Get ready!";
-    }
-    else if (a=="r") {
-        cout<<"Stop";
-    }
-}
-int p10() {
-    int a;
-    cin>>a;
-    if (a<60) {
-        cout<<"F"<<endl;
-    }
-    else if (a<70) {
-        cout<<"D"<<endl;
-    }
-    else if (a<80) {
-        cout<<"C"<<endl;
-    }
-    else if (a<90) {
-        cout<<"B"<<endl;
-    }
-    else if (a<100) {
-        cout<<"A"<<endl;
+
+int p5() {
+    int num_classes;
+    float total_GPA = 0.0, total_credits = 0.0;
+
+    cout << "Enter the number of classes: ";
+    cin >> num_classes;
+
+    for (int i = 0; i < num_classes; ++i) {
+        int credits;
+        float marks;
+        cout << "Enter credits and marks for class " << (i + 1) << ": ";
+        cin >> credits >> marks;
+
+        total_GPA += credits * marks;
+        total_credits += credits;
     }
 
+    cout << "Your total GPA is " << total_GPA / total_credits;
 }
+
+int p6() {
+    int num_students, num_classes;
+    float total_GPA = 0.0, total_credits = 0.0;
+
+    cout << "Enter number of students: ";
+    cin >> num_students;
+
+    for (int i = 0; i < num_students; ++i) {
+        cout << "Enter number of classes for student " << (i + 1) << ": ";
+        cin >> num_classes;
+
+        for (int j = 0; j < num_classes; ++j) {
+            int credits;
+            float marks;
+            cout << "Enter credits and marks for class " << (j + 1) << ": ";
+            cin >> credits >> marks;
+
+            total_GPA += credits * marks;
+            total_credits += credits;
+        }
+    }
+
+    cout << "The total GPA of the class is " << total_GPA / total_credits;
+}
+
+int p7() {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
+
+int p8() {
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= i; ++j) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
+
+int p9() {
+    int num;
+    cin >> num;
+
+    bool prime = true;
+    if (num <= 1) {
+        prime = false;
+    }
+
+    for (int i = 2; i * i <= num; ++i) {
+        if (num % i == 0) {
+            prime = false;
+            break;
+        }
+    }
+
+    if (prime) {
+        cout << "Number is prime";
+    } else {
+        cout << "Number is not prime";
+    }
+}
+
+int p10() {
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n; ++i) {
+        cout << i << "*" << i << "=" << (i * i) << endl;
+    }
+}
+
 int p11() {
-    int a,b;
-    cin>>a>>b;
-    if (a%b==0) {
-        cout<<a<<" is divisible by "<<b<<endl;
+    int num, pos = 0, neg = 0, sum = 0, count = 0;
+    while (true) {
+        cout << "Enter an integer,the input ends if it is 0: ";
+        cin >> num;
+
+        if (num == 0) break;
+
+        if (num > 0) {
+            ++pos;
+        } else {
+            ++neg;
+        }
+        sum += num;
+        ++count;
     }
-    else {
-        cout<<a<<" is not divisible by "<<b<<endl;
+
+    if (count != 0) {
+        cout << "The number of positives is " << pos << endl;
+        cout << "The number of negatives is " << neg << endl;
+        cout << "The total is " << sum << endl;
+        cout << "The average is " << float(sum) / count << endl;
+    } else {
+        cout << "No numbers entered.";
     }
 }
+
 int p12() {
-    int a,b,c;
-    cin>>a>>b>>c;
-    if ((a+b)>c and (a+c)>b and (c+b)>a) {
-        cout<<"The triangle is valid"<<endl;
-    }
-    else {
-        cout<<"The triangle is not valid"<<endl;
+    int num;
+    cin >> num;
+
+    while (num != 0) {
+        cout << num % 10;
+        num /= 10;
     }
 }
 int p13() {
-    char a;
-    cin>>a;
-    if (islower(a)) {
-        cout<<"Lowercase alphabet"<<endl;
+    int n;
+    cin >> n;
+
+    if (n == 0) {
+        cout << "The depth is 0";
+    } else {
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= i; ++j) {
+                cout << i;
+            }
+            cout << endl;
+        }
     }
-    else if (isupper(a)) {
-        cout<<"Uppercase alphabet"<<endl;
-    }
-    else {
-        cout<<"It is not an alphabet"<<endl;
-    }
-}
-int p14() {
-    cout<<"Enter weight and price for pack- age 1: ";
-    int w1,p1,w2,p2;
-    cin>>w1>>p1;
-    cout<<"Enter weight and price for pack- age 2:";
-    cin>>w2>>p2;
-    if (w1/p1>w2/p2) {
-        cout<<"Package 2 has a better price"<<endl;
-    }
-    else if (w2/p2==w1/p1) {
-        cout<<"Two packages have the same price."<<endl;
-    }
-    else {
-        cout<<"Package 1 has a better price"<<endl;
-    }
-}
-int p15() {
-    cout<<"Enter a three-digit integer:"<<endl;
-    string a;
-    cin>>a;
-    if (a[0]==a[2]) {
-        cout<<a<<" is a palindrome"<<endl;
-    }
-    else {
-        cout<<a<<" is not a palindrome"<<endl;
-    }
-}
-int p16() {
-    int x,y;
-    cin>>x>>y;
-    if (sqrt(x*x+y*y)<10) {
-        cout<<"Point ("<<x<<","<<y<<") is in circle";
-    }
-    else {
-        cout<<"Point ("<<x<<","<<y<<") is not in circle";
-    }
-}
-int p17() {
-    double a;
-    if (a<3.0) {
-        cout<<"No schollarship";
-    }
-    else if (a<3.5) {
-        cout<<"You got 50% scholarship";
-    }
-    else if (a<4) {
-        cout<<"You got 60% scholarship";
-    }
-    else if (a<4.6) {
-        cout<<"You got 80% scholarship";
-    }
-}
-int main() {
-    p4();
-    return 0;
 }
 
+int p14() {
+    string binary;
+    cin >> binary;
+
+    int decimal = 0;
+    int length = binary.size();
+
+    for (int i = 0; i < length; ++i) {
+        if (binary[length - 1 - i] == '1') {
+            decimal += pow(2, i);
+        }
+    }
+
+    cout << "The decimal number is " << decimal;
+}
+
+int main() {
+    p14();
+}
