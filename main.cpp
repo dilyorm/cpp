@@ -1,294 +1,231 @@
 #include <iostream>
-#include <cmath>
-#include <cstdlib>
-#include <ctime>
+#include <string>
+#include <cctype>
+
 using namespace std;
 
-int p1_1() {
-    int sum=0;
-    for (int i = 1; i <= 100; i++) {
-        sum=sum+i;
-    }
-    cout<<sum<<endl;
-}
+void restaurantOrdering() {
+    int choice, quantity;
+    double totalBill = 0;
 
-int p1_2() {
-    int N,sum=0;
-    cin >> N;
-    for (int i = 1; i <= N; i++) {
-        sum=sum+i;
-    }
-    cout<<sum<<endl;
-}
-
-
-int p2_1() {
-    int prime=0,in=2,flag=0;
-    while (prime<10) {
-        for (int i=2;i<=sqrt(in)+1;i++) {
-            if (in%i==0 and in!=2) {
-                flag=1;
-                break;
-            }
-        }
-        if (flag==0) {
-            cout<<in<<endl;
-            prime++;
-        }
-        in++;
-        flag=0;
-    }
-}
-
-int p2_2() {
-    int n,prime=0,in=2,flag=0;
-    cin>>n;
-    while (prime<n) {
-        for (int i=2;i<=sqrt(in)+1;i++) {
-            if (in%i==0 and in!=2) {
-                flag=1;
-                break;
-            }
-        }
-        if (flag==0) {
-            cout<<in<<endl;
-            prime++;
-        }
-        in++;
-        flag=0;
-    }
-}
-
-int p3() {
-    int n;
-    cin>>n;
-    while (n>1) {
-        cout<<n<<",";
-        if (n%2==0) {
-            n=n/2;
-        }
-        else {
-            n=n*3+1;
-        }
-    }
-    cout<<1<<endl;
-}
-
-int p4() {
-    int n,count=1;
-    cin>>n;
-    while (n>1) {
-        count+=1;
-        n=n/10;
-    }
-    cout<<count<<endl;
-}
-
-int p5() {
-    int n;
-    cin>>n;
-    while (n>1) {
-        cout<<n%10<<" ";
-        n=n/10;
-    }
-    cout<<n<<endl;
-}
-int findGCD(int a, int b) {
-    if (a == 0)
-        return b;
-    return findGCD(b % a, a);
-}
-int p6() {
-    int a,b;
-    cin>>a>>b;
-    cout<<findGCD(a,b);
-}
-
-int p7() {
-    int sum=0,counter=0,n;
-    while (sum<100) {
-        cout<<"Enter a number: ";
-        cin>>n;
-        sum=sum+n;
-        counter++;
-    }
-    cout<<"Sum exceeded 100! Total sum: "<<sum<<endl<<"Total numbers entered: "<<counter;
-}
-
-int p8() {
-    int n,balance=500;
-    cout<<"Your balance: $500";
-    while (balance>0) {
-        cout<<"Enter withdrawal amount (or 0 to cancel): ";
-        cin >> n;
-        if (balance<n) {
-            cout<<"Insufficient funds!"<<endl;
-        }
-        else {
-            balance=balance-n;
-            cout<<"Remaining balance: $"<<balance<<endl;
-        }}
-}
-
-int p9() {
-    string k;
-    cout<<"Enter N or Y: ";
-    cin>>k;
-    while (k!="N" and k!="Y") {
-        cout<<"Invalid"<<endl;
-        cin>>k;
-    }
-    cout<<"Accepted";
-}
-
-int p10() {
-    string user_input;
-    cin>>user_input;
-    while (user_input!="Exit") {
-        cout<<"Processing..."<<endl;
-        cin>>user_input;
-    }
-    cout<<"Goodbye!"<<endl;
-}
-double add(double x, double y) {
-    return x + y;
-}
-
-double subtract(double x, double y) {
-    return x - y;
-}
-
-double multiply(double x, double y) {
-    return x * y;
-}
-
-double divide(double x, double y) {
-    if (y == 0) {
-        cout << "Error! Division by zero." << endl;
-        return 0;
-    }
-    return x / y;
-}
-void menu() {
-    cout << "Menu:" << endl;
-    cout << "1. Addition" << endl;
-    cout << "2. Subtraction" << endl;
-    cout << "3. Multiplication" << endl;
-    cout << "4. Division" << endl;
-    cout << "5. Exit" << endl;
-}
-int p11() {
-    double num1, num2;
-    int choice;
-
-    while (true) {
-        menu(); // Display the menu
-        cout << "Enter choice (1/2/3/4/5): ";
+    do {
+        cout << "Menu:\n1. Pizza ($10)\n2. Burger ($8)\n3. Salad ($5)\n4. Exit\n";
+        cout << "Enter the item number: ";
         cin >> choice;
 
-        if (choice == 5) {
-            cout << "Exiting the calculator. Goodbye!" << endl;
-            break;
+        if (choice == 4) break;
+
+        cout << "Enter quantity: ";
+        cin >> quantity;
+
+        switch(choice) {
+            case 1: totalBill += 10 * quantity; break;
+            case 2: totalBill += 8 * quantity; break;
+            case 3: totalBill += 5 * quantity; break;
+            default: cout << "Invalid choice!\n"; continue;
         }
 
-        if (choice >= 1 && choice <= 4) {
-            cout << "Enter first number: ";
-            cin >> num1;
-            cout << "Enter second number: ";
-            cin >> num2;
+        cout << "Total Bill: $" << totalBill << endl;
 
-            switch (choice) {
-                case 1:
-                    cout << num1 << " + " << num2 << " = " << add(num1, num2) << endl;
-                break;
-                case 2:
-                    cout << num1 << " - " << num2 << " = " << subtract(num1, num2) << endl;
-                break;
-                case 3:
-                    cout << num1 << " * " << num2 << " = " << multiply(num1, num2) << endl;
-                break;
-                case 4:
-                    cout << num1 << " / " << num2 << " = " << divide(num1, num2) << endl;
-                break;
-            }
+    } while (true);
+}
+
+double calculateParkingFee(int hours) {
+    double fee = 0;
+
+    if (hours <= 2) {
+        fee = 0;
+    } else if (hours <= 5) {
+        fee = 2 * (hours - 2);
+    } else {
+        fee = 2 * 3 + 5 * (hours - 5);
+    }
+
+    return fee;
+}
+
+void parkingFeeCalculator() {
+    int hours;
+
+    while (true) {
+        cout << "Enter number of hours parked (negative value to exit): ";
+        cin >> hours;
+
+        if (hours < 0) break;
+
+        cout << "Parking Fee: $" << calculateParkingFee(hours) << endl;
+    }
+}
+
+double balance = 500;
+
+void deposit() {
+    double amount;
+    cout << "Enter deposit amount: ";
+    cin >> amount;
+    balance += amount;
+}
+
+void withdraw() {
+    double amount;
+    cout << "Enter withdrawal amount: ";
+    cin >> amount;
+
+    if (amount <= balance) {
+        balance -= amount;
+    } else {
+        cout << "Insufficient Funds\n";
+    }
+}
+
+void checkBalance() {
+    cout << "Current Balance: $" << balance << endl;
+}
+
+void bankingSystem() {
+    int option;
+    do {
+        cout << "Menu:\n1. Deposit\n2. Withdraw\n3. Check Balance\n4. Exit\n";
+        cout << "Choose an option: ";
+        cin >> option;
+
+        switch(option) {
+            case 1: deposit(); break;
+            case 2: withdraw(); break;
+            case 3: checkBalance(); break;
+            case 4: break;
+            default: cout << "Invalid option!\n"; break;
+        }
+    } while (option != 4);
+}
+
+double calculateMovieTicketCost(int movieChoice, int tickets) {
+    double cost = 0;
+    switch(movieChoice) {
+        case 1: cost = 8 * tickets; break;
+        case 2: cost = 10 * tickets; break;
+        case 3: cost = 12 * tickets; break;
+        default: cout << "Invalid movie selection!\n"; break;
+    }
+    return cost;
+}
+
+void movieTicketBooking() {
+    int movieChoice, tickets;
+
+    do {
+        cout << "Select a Movie:\n1. Movie A ($8)\n2. Movie B ($10)\n3. Movie C ($12)\n4. Exit\n";
+        cout << "Enter movie choice: ";
+        cin >> movieChoice;
+
+        if (movieChoice == 4) break;
+
+        cout << "Enter number of tickets: ";
+        cin >> tickets;
+
+        cout << "Total Cost: $" << calculateMovieTicketCost(movieChoice, tickets) << endl;
+
+    } while (movieChoice != 4);
+}
+
+double calculateTrainTicketFare(int trainChoice, int tickets) {
+    double fare = 0;
+    switch(trainChoice) {
+        case 1: fare = 15 * tickets; break;
+        case 2: fare = 20 * tickets; break;
+        case 3: fare = 25 * tickets; break;
+        default: cout << "Invalid train selection!\n"; break;
+    }
+    return fare;
+}
+
+void trainTicketReservation() {
+    int trainChoice, tickets;
+
+    do {
+        cout << "Select a Train:\n1. Train X ($15)\n2. Train Y ($20)\n3. Train Z ($25)\n4. Exit\n";
+        cout << "Enter train choice: ";
+        cin >> trainChoice;
+
+        if (trainChoice == 4) break;
+
+        cout << "Enter number of tickets: ";
+        cin >> tickets;
+
+        cout << "Total Fare: $" << calculateTrainTicketFare(trainChoice, tickets) << endl;
+
+    } while (trainChoice != 4);
+}
+
+bool checkPasswordStrength(string password) {
+    bool hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
+
+    for (char c : password) {
+        if (isupper(c)) hasUpper = true;
+        if (islower(c)) hasLower = true;
+        if (isdigit(c)) hasDigit = true;
+        if (ispunct(c)) hasSpecial = true;
+    }
+
+    return (password.length() >= 8 && hasUpper && hasLower && hasDigit && hasSpecial);
+}
+
+void passwordStrengthChecker() {
+    string password;
+    cout << "Enter password: ";
+    cin >> password;
+
+    if (checkPasswordStrength(password)) {
+        cout << "Strong Password\n";
+    } else {
+        cout << "Weak Password\n";
+    }
+}
+
+bool isLeapYear(int year) {
+    return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+}
+
+bool isValidDate(int day, int month, int year) {
+    if (month < 1 || month > 12) return false;
+
+    int daysInMonth[] = {31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    return (day >= 1 && day <= daysInMonth[month - 1]);
+}
+
+void nextDate(int &day, int &month, int &year) {
+    int daysInMonth[] = {31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    day++;
+
+    if (day > daysInMonth[month - 1]) {
+        day = 1;
+        month++;
+
+        if (month > 12) {
+            month = 1;
+            year++;
+        }
+    }
+}
+
+void calendarValidator() {
+    int day, month, year;
+
+    do {
+        cout << "Enter date (day month year): ";
+        cin >> day >> month >> year;
+
+        if (isValidDate(day, month, year)) {
+            nextDate(day, month, year);
+            cout << "Next Date: " << day << "/" << month << "/" << year << endl;
         } else {
-            cout << "Invalid choice! Please select a valid option." << endl;
+            cout << "Invalid Date!\n";
         }
-    }
+    } while (true);
 }
 
-int p12() {
-    int num;
-    cout<<"Enter password: ";
-    cin >> num;
-
-    while (num != 6543) {
-        cout<<"Incorrect"<<endl;
-        cout<<"Enter password: "<<endl;
-        cin >> num;
-    }
-    cout<<"Access Granted";
-}
-int p13() {
-    long long int n,a;
-    cout<<"Guess: ";
-    cin >> n;
-    srand(time(0));
-
-    // Generate a random number between 0 and RAND_MAX
-    a = rand() % 100 + 1;
-    cout<<a<<endl;
-    while (n!=a) {
-        if (n<a) {
-            cout<<"too low"<<endl;
-        }
-        else if (n>a) {
-            cout<<"too high"<<endl;
-        }
-        cout<<"Guess: ";
-        cin >> n;
-    }
-    cout<<"Correct!"<<endl;
-}
-
-//p14
-void welcomeMessage() {
-    cout<<"Welcome to the C++ programming world!";
-}
-//p15
-void greetUser() {
-    string user_input;
-    cout<<"Enter your name: ";
-    cin>>user_input;
-    cout <<"Hello,"<< user_input <<"!"<< endl;
-}
-//p16
-int maxNumber(int a, int b) {
-    if (a>=b) {
-        return a;
-    }
-    else {
-        return b;
-    }
-}
-//p17
-int factorial(int n) {
-    int f=1;
-    for (int i = 1; i<=n; i++) {
-        f=f*i;
-    }
-    return f;
-}
-//p18
-int printRectangle(int width, int height) {
-    cout<<"The rectangle is :"<<endl;
-    for (int i = 1; i<=height; i++) {
-        cout<<endl;
-        for (int j = 1; j<=width; j++) {
-            cout<<"*";
-        }
-    }
-}
 int main() {
-    printRectangle(3,2);
+restaurantOrdering();
 }
