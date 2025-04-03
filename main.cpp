@@ -1,215 +1,129 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
+
 void p1() {
-    int a,b,sum=0;
-    cin>>a>>b;
-    int sumofarray[a][b];
-    for (int i=0;i<a;i++) {
-        for (int j=0;j<b;j++) {
-           cin>>sumofarray[i][j];
-            sum+=sumofarray[i][j];
-        }
+    int abc, sum = 0;
+    cin >> abc;
+    int xyz[abc];
+    for (int i = 0; i < abc; i++) {
+        cin >> xyz[i];
+        sum += xyz[i];
     }
-    cout<<sum<<endl;
+    cout << sum << endl;
 }
+
 void p2() {
-    int a,b,maxofraw=-999999;
-    cin>>a>>b;
-    int sumofarray[a][b];
-    for (int i=0;i<a;i++) {
-        maxofraw=-999999;
-        for (int j=0;j<b;j++) {
-            cin>>sumofarray[i][j];
-            maxofraw=max(maxofraw,sumofarray[i][j]);
-        }
-        cout<<maxofraw<<endl;
+    int def;
+    double avg = 0;
+    cin >> def;
+    int ghi[def];
+    for (int i = 0; i < def; i++) {
+        cin >> ghi[i];
+        avg += ghi[i];
     }
-
+    avg /= def;
+    cout << avg << endl;
 }
+
 void p3() {
-    int a,b,sumofcolumn=0;
-    cin>>a>>b;
-    int sumofarray[a][b];
-    for (int i=0;i<a;i++) {
-        for (int j=0;j<b;j++) {
-            cin>>sumofarray[i][j];
+    int jkl, mno;
+    cin >> jkl;
+    mno = 1e9;
+    int pqr[jkl];
+    for (int i = 0; i < jkl; i++) {
+        cin >> pqr[i];
+        mno = min(mno, pqr[i]);
+    }
+    cout << mno << endl;
+}
 
+int indexOfLargestElement(double stu[], int vwx) {
+    if (vwx <= 0) return -1;
+    double yzq = stu[0];
+    int rst = 0;
+    for (int i = 1; i < vwx; i++) {
+        if (stu[i] >= yzq) {
+            yzq = stu[i];
+            rst = i;
         }
     }
-    for (int i=0;i<b;i++) {
-        sumofcolumn=0;
-        for (int j=0;j<a;j++) {
-            sumofcolumn+=sumofarray[j][i];
-        }
-        cout<<sumofcolumn<<" ";
-    }
+    return rst;
 }
-void p4() {
-    int a,sum=0;
-    cin>>a;
-    int sumofarray[a][a];
-    for (int i=0;i<a;i++) {
-        for (int j=0;j<a;j++) {
-            cin>>sumofarray[i][j];
-        }
-    }
-    for (int i=0;i<a;i++) {
-        sum+=sumofarray[i][i];
-    }
-    cout<<sum<<endl;
-}
-void p5() {
-    int a,b,sumofcolumn=0;
-    cin>>a>>b;
-    int sumofarray[a][b];
-    int secondarray[b][a];
-    for (int i=0;i<a;i++) {
-        for (int j=0;j<b;j++) {
-            cin>>sumofarray[i][j];
 
-        }
+bool strictlyEqual(const int abc[], const int def[], int ghi) {
+    for (int i = 0; i < ghi; i++) {
+        if (abc[i] != def[i]) return false;
     }
-    for (int i=0;i<b;i++) {
-        for (int j=0;j<a;j++) {
-            secondarray[i][j]=sumofarray[j][i];
-            cout<<secondarray[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+    return true;
 }
+
 void p6() {
-    int a,b,sumofcolumn=0;
-    cin>>a>>b;
-    int sumofarray[a][b];
-
-    for (int i=0;i<a;i++) {
-        for (int j=0;j<b;j++) {
-            cin>>sumofarray[i][j];
+    char jkl;
+    int mno[26] = {0};
+    while (cin >> jkl && jkl != '0') {
+        if (jkl >= 'a' && jkl <= 'z') {
+            mno[jkl - 'a']++;
         }
     }
-    cin>>a>>b;
-    int sofarray[a][b];
-    for (int i=0;i<a;i++) {
-        for (int j=0;j<b;j++) {
-            cin>>sofarray[i][j];
+    for (int i = 0; i < 26; i++) {
+        if (mno[i] > 0) {
+            cout << char(i + 'a') << " : " << mno[i] << endl;
         }
     }
-    int newarray[a][b];
-    for (int i=0;i<a;i++) {
-        for (int j=0;j<b;j++) {
-            newarray[i][j]=0;
-            for (int k=0;k<b;k++) {
-                newarray[i][j]+=sumofarray[i][k]*sofarray[k][j];
-            }
-            cout<<newarray[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-
-
 }
+
 void p7() {
-    int n;
-    cin >> n;
-    int matrix[n][n];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> matrix[i][j];
-        }
+    int pqr;
+    cin >> pqr;
+    int stu[pqr];
+    for (int i = 0; i < pqr; i++) {
+        cin >> stu[i];
     }
-    int rotated[n][n];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            rotated[j][n - 1 - i] = matrix[i][j];
-        }
+    sort(stu, stu + pqr);
+    for (int i = 0; i < pqr; i++) {
+        cout << stu[i] << " ";
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cout << rotated[i][j] << " ";
-        }
-        cout << endl;
-    }
+    cout << endl;
 }
 
 void p8() {
-    string s;
-    cin >> s;
-    int vowels = 0, consonants = 0;
-    for (char c : s) {
-        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') vowels++;
-        else consonants++;
+    int vwx[6] = {0};
+    for (int i = 0; i < 10000; i++) {
+        int yzq = rand() % 6 + 1;
+        vwx[yzq - 1]++;
     }
-    cout << vowels << " " << consonants << endl;
+    for (int i = 0; i < 6; i++) {
+        cout << (i + 1) << ": " << vwx[i] << endl;
+    }
 }
 
-void p9() {
-    string s;
-    cin >> s;
-    reverse(s.begin(), s.end());
-    cout << s << endl;
+void reverseArray(int abc[], int def, int ghi) {
+    while (def < ghi) {
+        swap(abc[def], abc[ghi]);
+        def++;
+        ghi--;
+    }
 }
 
 void p10() {
-    string s;
-    cin >> s;
-    string rev = s;
-    reverse(rev.begin(), rev.end());
-    cout << (s == rev ? "Yes" : "No") << endl;
-}
-
-void p11() {
-    string s;
-    cin >> s;
-    int freq[26] = {0};
-    for (char c : s) freq[c - 'a']++;
-    char mostFreq = 'a';
-    int maxFreq = 0;
-    for (int i = 0; i < 26; i++) {
-        if (freq[i] > maxFreq) {
-            maxFreq = freq[i];
-            mostFreq = 'a' + i;
+    int jkl;
+    cin >> jkl;
+    int mno[jkl];
+    for (int i = 0; i < jkl; i++) {
+        cin >> mno[i];
+    }
+    bool pqr = true;
+    for (int i = 1; i < jkl; i++) {
+        if (mno[i] < mno[i - 1]) {
+            pqr = false;
+            break;
         }
     }
-    cout << mostFreq << endl;
-}
-
-void p12() {
-    string s;
-    cin >> s;
-    string result = "";
-    bool seen[26] = {false};
-    for (char c : s) {
-        if (!seen[c - 'a']) {
-            seen[c - 'a'] = true;
-            result += c;
-        }
-    }
-    cout << result << endl;
-}
-
-void p13() {
-    string s;
-    getline(cin >> ws, s);
-    string longest = "", word = "";
-    for (char c : s + " ") {
-        if (c == ' ') {
-            if (word.length() > longest.length()) longest = word;
-            word = "";
-        } else {
-            word += c;
-        }
-    }
-    cout << longest << endl;
-}
-
-void p14() {
-    string s1, s2;
-    cin >> s1 >> s2;
-    sort(s1.begin(), s1.end());
-    sort(s2.begin(), s2.end());
-    cout << (s1 == s2 ? "Yes" : "No") << endl;
+    cout << (pqr ? "YES" : "NO") << endl;
 }
 
 int main() {
-    p6();
+    p7();
+    return 0;
 }
