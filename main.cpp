@@ -1,153 +1,180 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
-void a1() {
-    int a[5] = {10, 20, 30, 40, 50};
-    int *p = a;
-    for (int i = 0; i < 5; i++) cout << *(p + i) << " ";
-}
-
-void a2() {
-    int a[6] = {2, 4, 6, 8, 10, 12};
-    for (int i = 0; i < 6; i++) a[i] *= 3;
-    for (int i = 0; i < 6; i++) cout << a[i] << " ";
-}
-
-void a3() {
-    int a[4] = {5, 10, 15, 20};
-    int *p = a;
-    cout << "a[2] = " << p[2] << endl;
-    cout << "*(a + 2) = " << *(p + 2) << endl;
-}
-
-void a4() {
-    int a[5] = {1, 2, 3, 4, 5};
-    int *p = a + 4;
-    for (int i = 0; i < 5; i++) cout << *(p - i) << " ";
-}
-
-void a5() {
-    int a[3] = {1, 2, 3};
-    int *p = a + 1;
-    cout << "*p = " << *p << endl;
-}
-
-void a6() {
-    int a[4] = {1, 2, 3, 4};
-    for (int i = 0; i < 4; i++) cout << *(a + i) << " " << (a + i) << endl;
-}
-
-void a7() {
-    int a[7] = {1, 2, 3, 4, 5, 6, 7};
-    for (int i = 0; i < 7; i++) if (a[i] % 2 == 0) cout << a[i] << " ";
-}
-
-void a8() {
-    int m[2][3] = {1, 2, 3, 4, 5, 6};
-    int *p = &m[0][0];
-    for (int i = 0; i < 6; i++) cout << *(p + i) << " ";
-}
-
-void a9() {
-    int x = 19, y = 12, z = 8;
-    int *p[3] = {&x, &y, &z};
-    for (int i = 0; i < 3; i++) cout << *(p[i]) << " ";
-}
-
-void a10() {
-    int a[5] = {17, 1, 5, 19, 4};
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4 - i; j++) {
-            if (*(a + j) > *(a + j + 1)) {
-                int t = *(a + j);
-                *(a + j) = *(a + j + 1);
-                *(a + j + 1) = t;
-            }
-        }
-    }
-    for (int i = 0; i < 5; i++) cout << a[i] << " ";
-}
-
-void a11() {
-    const char *s[4] = {"H", "D", "C", "S"};
-    for (int i = 0; i < 4; i++) cout << s[i] << " ";
-}
-
-void a12() {
-    const char *d[6] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-    for (int i = 0; i < 6; i++) cout << d[i][1] << " ";
-}
-
-void a13() {
-    int d[4][13] = {0};
-    const char *s[4] = {"H", "D", "C", "S"};
-    const char *f[13] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-    d[0][0] = 1;
-    d[3][12] = 1;
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 13; j++) {
-            if (d[i][j] == 1) cout << f[j] << " of " << s[i] << endl;
-        }
-    }
-}
-
-void a14() {
-    int d[4][13] = {0};
-    const char *s[4] = {"H", "D", "C", "S"};
-    const char *f[13] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-    srand(time(0));
-    for (int c = 1; c <= 52; c++) {
-        int r, x;
-        do {
-            r = rand() % 4;
-            x = rand() % 13;
-        } while (d[r][x] != 0);
-        d[r][x] = c;
-    }
-    for (int v = 1; v <= 52; v++) {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 13; j++) {
-                if (d[i][j] == v) cout << f[j] << " of " << s[i] << endl;
-            }
-        }
-    }
-}
-
-void a15() {
-    void (*f)();
-    auto g = []() { cout << "Hello" << endl; };
-    auto b = []() { cout << "Bye" << endl; };
-    f = g; f();
-    f = b; f();
-}
-
-int f1(int x, int y) { return x + y; }
-int f2(int x, int y) { return x * y; }
-
-void a16(int (*f)(int, int), int x, int y) {
-    cout << "Result: " << f(x, y) << endl;
-}
-
-void a17() {
-    int x = 4, y = 5;
-    a16(f1, x, y);
-    a16(f2, x, y);
-}
-
-void a18() {
-    int (*f[])(int, int) = {f1, f2};
-    int c, x = 5, y = 3;
-    cout << "1. Add\n2. Multiply\nEnter: ";
-    cin >> c;
-    if (c == 1 || c == 2)
-        cout << "Output: " << f[c - 1](x, y) << endl;
-    else
-        cout << "Invalid\n";
-}
-
-int main() {
-    a18();
+int p1(){
+    int a = 5;
+    int* p = &a;
+    cout << a << " " << p << " " << *p << endl;
     return 0;
+}
+
+int p2(){
+    int a = 10;
+    int* p = &a;
+    cout << a << " ";
+    *p = 20;
+    cout << a << endl;
+    return 0;
+}
+
+int p3(){
+    int a = 3, b = 4;
+    void s(int* x, int* y){int t = *x; *x = *y; *y = t;}
+    cout << a << " " << b << " ";
+    s(&a,&b);
+    cout << a << " " << b << endl;
+    return 0;
+}
+
+int p4(){
+    int a[] = {1,2,3,4,5}, *p = a;
+    for(int i = 0; i < 5; i++) cout << *(p+i) << " ";
+    cout << endl;
+    return 0;
+}
+
+int p5(){
+    int a[] = {1,2,3,4,5}, *p = a;
+    cout << *(p+2) << endl;
+    return 0;
+}
+
+int p6(){
+    void s(int* p){*p = (*p)*(*p);}
+    int a = 4;
+    s(&a);
+    cout << a << endl;
+    return 0;
+}
+
+int p7(){
+    int a[5] = {1,2,3,4,5}, *p = a;
+    cout << sizeof(a) << " " << sizeof(p) << endl;
+    return 0;
+}
+
+int p8(){
+    int a = 42;
+    void* p = &a;
+    cout << *(int*)p << endl;
+    return 0;
+}
+
+int p9(){
+    int a[] = {3,9,1,6}, *p = a, m = *p;
+    for(int i = 1; i < 4; i++) if(*(p+i) > m) m = *(p+i);
+    cout << m << endl;
+    return 0;
+}
+
+int p10(){
+    int a,b,*p=&a,*q=&b;
+    cin>>a>>b;
+    cout<<*p<<" "<<*q<<endl;
+    return 0;
+}
+
+int p11(){
+    int n, *p, m=0;
+    cin >> n;
+    p = new int[n];
+    for(int i = 0; i < n; i++) cin >> p[i];
+    int* x = p;
+    for(int i = 1; i < n; i++) if(*(p+i) > *x) x = p+i;
+    cout << *x << endl;
+    delete[] p;
+    return 0;
+}
+
+int p12(){
+    #define val 33.3
+    #define number 50
+    int a;
+    int& fun(){return a;}
+    int foo(){return a;}
+    int n1=9,n2=11,*p1=&n1,*p2=&n2,k=0;
+    double t=val;
+    k=val;
+    fun()=number;
+    foo()=number;
+    cout<<number<<" "<<n2<<" "<<t<<" "<<k<<endl;
+    return 0;
+}
+
+int p13(){
+    int a[10]={1,2,3,4,5,6,7,8,9,10},*p=a;
+    for(int i=0;i<10;i++) cout<<p+i<<" "<<*(p+i)<<endl;
+    return 0;
+}
+
+int p14(){
+    int m=42,*p=&m;
+    cout<<*p<<endl;
+    return 0;
+}
+
+int p15(){
+    int a[]={10,20,30,40,50},*p=a;
+    cout<<*(p+4)<<endl;
+    return 0;
+}
+
+int p16(){
+    int a=75,*p=&a;
+    cout<<*p<<" ";
+    *p+=10;
+    cout<<*p<<endl;
+    return 0;
+}
+
+int p17(){
+    int a[]={1,2,3,4,5},*l=a,*r=a+4,t;
+    while(l<r){t=*l;*l=*r;*r=t;l++;r--;}
+    for(int i=0;i<5;i++) cout<<a[i]<<" ";
+    cout<<endl;
+    return 0;
+}
+
+int p18(){
+    int a[]={78,95,85,62,88},*p=a,*x=p,*y=p,*z=p;
+    for(int i=1;i<5;i++){
+        if(*p<*(p+i)) x=p+i;
+    }
+    for(int i=0;i<5;i++){
+        if(p+i!=x && (*p+i>*y || y==x)) y=p+i;
+    }
+    for(int i=0;i<5;i++){
+        if(p+i!=x && p+i!=y && (*p+i>*z || z==x || z==y)) z=p+i;
+    }
+    cout<<*x<<" "<<*y<<" "<<*z<<endl;
+    return 0;
+}
+
+int* p19(int& n){
+    static int c[10]={};
+    while(n){c[n%10]++;n/=10;}
+    return c;
+}
+
+void p20(int* a,int n){
+    for(int i=0;i<n-1;i++)
+        for(int j=i+1;j<n;j++)
+            if(*(a+i)>*(a+j)){
+                int t=*(a+i);
+                *(a+i)=*(a+j);
+                *(a+j)=t;
+            }
+    for(int i=0;i<n;i++) cout<<*(a+i)<<" ";
+    cout<<endl;
+}
+
+void p21(const char* s,int& v,int& c){
+    v=c=0;
+    while(*s){
+        char x=tolower(*s);
+        if((x>='a'&&x<='z'))
+            if(x=='a'||x=='e'||x=='i'||x=='o'||x=='u') v++;
+            else c++;
+        s++;
+    }
 }
